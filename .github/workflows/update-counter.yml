@@ -1,0 +1,34 @@
+name: Increment Counter
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+
+jobs:
+  increment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run increment script
+        run: |
+          chmod +x increment.sh
+          ./increment.sh
+
+      - name: Introduce random delay
+        run: |
+          # Random delay between 1 and 86400 seconds (24 hours)
+          DELAY=$((RANDOM % 86400))
+          echo "Waiting for $DELAY seconds before committing..."
+          sleep $DELAY
+
+      - name: Commit and push changes
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          git config user.name "turnwol7" # Replace with your name
+          git config user.email "justinb.developer@gmail.com" # Replace with your GitHub email
+          git add counter.txt
+          git commit -m "Incremented counter to $(cat counter.txt)"
+          git push https://$PAT_TOKEN@github.com/username/daily-worker.git HEAD:main
