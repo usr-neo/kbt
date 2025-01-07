@@ -31,4 +31,4 @@ jobs:
           git config user.email "justinb.developer@gmail.com" # Replace with your GitHub email
           git add counter.txt
           git commit -m "Incremented counter to $(cat counter.txt)"
-          git push https://$PAT_TOKEN@github.com/username/daily-worker.git HEAD:main
+          git push https://$PAT_TOKEN@github.com/turnwol7/daily-worker.git HEAD:main
