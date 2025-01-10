@@ -21,8 +21,8 @@ jobs:
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          git config user.name "turnwol7"
-          git config user.email "justinb.developer@gmail.com"
+          git config user.name "usr-neo"
+          git config user.email "vaibhavmishra5g@gmail.com"
           git add counter.txt
           git commit -m "Incremented counter to $(cat counter.txt)"
-          git push https://$PAT_TOKEN@github.com/turnwol7/daily-worker.git HEAD:main
+          git push https://$PAT_TOKEN@github.com/usr-neo/kbt.git HEAD:main
